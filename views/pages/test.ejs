@@ -1,0 +1,70 @@
+<%- include("particals/head");%>
+<title>社团管理系统</title>
+</head>
+<body>
+	<div id="main">
+		<%- include("particals/header");%>
+		
+		<div id="intro_left">
+			<p>友情链接</p>
+		</div>
+		
+		<div id="intro_right">
+			<h1>社团交流管理平台</h1>
+			<p class="white">Made By Ancaeus</p>
+			<p>欢迎成为各大社团的一员！</p>
+		</div>
+
+		<ul id="menu_left">
+			<li><a href="https://www.hnist.cn/" accesskey="m">湖南理工学院</a></li><li><a href="#" accesskey="s">xxxx</a></li><li><a href="#" accesskey="n">xxxx</a></li>
+		</ul>
+		
+		
+		<div id="right">
+			<div class="leftcol">
+				<h3>最新公告  <a href="/announce"> 查看更多</a></h3>
+				<%if(announ==null){%>
+					<p>暂无</p>
+			    <%}else{%>
+					<%var count=0;%>
+			    <%for(var i= length-1;i>=0;i--){%>
+					<%if(count==4) break;%>
+					<li><a href="/announpage?Id=<%=announ[i].Id%>"><%=announ[i].Title%></a></li>
+					<%count++;%>
+				<%}}%>    
+				
+			</div>
+			<div class="rightcol">
+				<%if(user==null){%>
+				<div><h3>请先</h3><a href="/login">登录</a></div>
+				<%}else if(user.Group==null){%>
+					<h3><a href="#">加入社团</a>享受更多精彩</h3>
+				<%}else{%>
+				<h3>社团动态  <a href="/group"> 查看更多</a></h3>
+				<p><img src="image.gif" alt="Image" class="image" />(这里动态显示)</p>
+				<%}%>
+			</div>
+        <div id="left">
+			<div class="box">
+				<h2>将会进行的活动</h2>
+				<%if(activity==null){%>
+					<p>暂无</p>
+				<%}else{%>
+                <%activity.forEach(function(value){%>
+					<p><b><%=value.Start.substring(0,10);%>--<%=value.End.substring(0,10);%><br><a href="/actpage?name=<%=value.Name%>"> &middot;<%=value.Name%></a></b><li>主办方：<a href="/group/grouppage?name=<%=value.Group%>"><%=value.Group%></a></li><li>举办地点：<%=value.Place%></li><li>描述：<%=value.Description.substring(0,50);%></li></p>
+				<%});}%>
+			</div>
+			<% if(isLogin==false){%>
+			<div class="note">		
+				<p>现在<a href="/register" title="Register Now!">注册</a> 享受精彩社团生活！</p>  
+			</div>
+			<%}%>
+		</div>
+			<div class="special">
+				<p>大学生社团活动管理平台是为了方便大家更方便的进行社团活动所建立的系统</p>	
+			</div>
+		</div>
+	<%- include("particals/footer");%>
+	</div>
+</body>
+</html>
