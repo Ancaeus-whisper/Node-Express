@@ -1,0 +1,44 @@
+<%- include("particals/head.ejs"); %>
+<title>社团信息</title>
+</header>
+
+<body>
+    <div id="main">
+        <%-include("particals/header.ejs"); %>
+        <div id="right" class="box">
+          <div class="leftcol" class="box" style="height: 100px;width:185px;">
+             <li>社团名：<%=group.Name%></li>
+             <li>社团人数：<%=group.Number%><a href="#"> 点击查看成员信息</a></li>
+             <li>社长：<a href="/userpage?username=<%=group.Leader%>"><%=group.Leader%></a></li>
+          </div>
+         
+          <div class="rightcol" class="box">
+            当前申请的活动：
+            <%if(activity==null){%>    
+              无
+              <%}else{%>
+              <%activity.forEach(function(value){%>
+                <div>
+                  <p><b><%=value.Start.substring(0,10);%>--<%=value.End.substring(0,10);%><br>
+                  <a href="/actpage?name=<%=value.Name%>"><%=value.Name%></a></p>
+                  </div>
+              <%});}%>
+            <button id="btn_1"><a href="/activity?time=&name=">申请活动</a></button>
+          </div> 
+          <div class="box" style="padding-top:200px;width:185px;">
+            <div style="padding-bottom:100px;margin:auto;">简介：<%=group.Description%></div>
+         </div>
+        </div>
+        <div id="right" class="box">
+          <%announ.forEach(function(value){%>
+        <div id="special" class="note">
+          <p><%=value.Title%></p>
+          <p><a href="/userpage?username="+<%=value.Author%>><%=value.Author%></a></p>
+          <p><%=value.Content%></p>
+          <p>已读：<%=value.Number%></p>
+        </div>
+        <%});%>
+        </div>
+    </div>
+    <%- include("particals/footer.ejs"); %> 
+</body>

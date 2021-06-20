@@ -1,0 +1,65 @@
+<%- include("particals/head");%>
+<link rel="stylesheet" type="text/css" href="table_style.css" />
+    <title>数据库测试</title>
+</head>
+<body>
+        <div class="container" id="main">
+          <%-include("particals/header");%>
+        <div class="imagetable" id="right">
+          <button onclick=showUser()>按钮</button> 
+          <table class="imagetable" id="t">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>姓名</th>
+                        <th>性别</th>
+                        <th>增加</th>
+                        <th>修改</th>
+                        <th>查询</th>
+                    </tr>
+                </thead>
+                <tbody id="user"> 
+                  <% for(var i=0; i<result.length; i++) {%>
+                    <tr>
+                      <th><%=JSON.stringify(result)[i].Id%></th>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        .Id%></th>：
+                      <th><%=JSON.stringify(result)[i].Name%></th>
+                      <th><%=JSON.stringify(result)[i].Sex%></th>
+                      <th><button></button></th>
+                      <th><button></button></th>
+                      <th><button></button></th>
+                    </tr>
+                  <%}%>                
+                </tbody>                                                                                                                                                                                                                          
+            </table>
+        </div>
+        
+    </div>
+    <script>
+      function showUser()
+      {
+        var tb=document.getElementById("user");
+        var xmlhttp;
+        if (window.XMLHttpRequest)
+        {
+                // IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
+                xmlhttp=new XMLHttpRequest();
+        }
+          else
+        {
+                // IE6, IE5 浏览器执行代码
+                xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xmlhttp.onreadystatechange=function()
+          {
+               if (xmlhttp.readyState==4 && xmlhttp.status==200)
+               {
+                     tb.innerHTML=xmlhttp.responseText;
+               }
+          }
+          xmlhttp.open("GET","/menu/SEARCH",true);
+          xmlhttp.send();
+        }
+    </script>
+    <%- include("particals/footer");%>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<%- include("particals/head.ejs");%>
+<link rel="stylesheet" type="text/css" href="input.css"/>
+<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<title>修改密码</title>
+<script>
+      function sendEmail()
+        {
+          
+          var tb=document.getElementById("result");
+          var xmlhttp;
+          if (window.XMLHttpRequest)
+          {
+                  // IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
+                  xmlhttp=new XMLHttpRequest();
+          }
+            else
+          {
+                  // IE6, IE5 浏览器执行代码
+                  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+          }
+          xmlhttp.onreadystatechange=function()
+            {
+                 if (xmlhttp.status==200&&xmlhttp.readyState==4)
+                 {
+                    alert("发送成功！");             
+                 }
+            }
+            xmlhttp.open("GET","/pwdmodify/email?emailAddress="+document.getElementsByName("email")[0].value,true);
+            xmlhttp.send();
+          }
+
+          function pwdModify()
+          {
+            $.ajax({  
+              type: "GET",  
+              dataType:"json",
+              url:"/pwdmodify/save",  
+              data:$('#modify').serialize(),  
+              async: false,  
+              error: function(request) {  
+                  alert(request.responseText);  
+              },  
+              success: function(data) {  
+                  //接收后台返回的结果 
+                  alert(JSON.parse(JSON.stringify(data)).message);
+                  window.location="/";
+              }  
+            });
+          }
+      </script>
+    </head>    
+
+<body>
+    <div id="main">
+        <%- include("particals/header.ejs"); %> 
+    <div id="right" style="height: 620px;">
+        <form id="modify">
+          
+          <div class="input_1"><div class="login_logo">密码找回</div></div>
+          <hr>
+
+             <div class="input_1">用户名:<input type='text' name='username'></div>
+  
+             <div class="input_1">密码: <input type='password' name='pwd'></div>
+  
+             <div class="input_1">邮箱: <input type='text' name='email' id="em"><input type="button" value="发送邮件" id="send" onclick="sendEmail()"><p id="result"></p></div>
+    
+             <div class="input_1">验证码：<input type="text" name="vcode"></div>
+  
+             <div class="input_1"><input type="button" class="submit_1" onclick="pwdModify()" value="修改密码"></div>
+
+         </form> 
+         </div>
+    </div>
+
+    <%- include("particals/footer.ejs"); %> 
+</body>
+</html>

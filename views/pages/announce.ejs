@@ -1,0 +1,88 @@
+<%- include("particals/head"); %>
+<link rel="stylesheet" type="text/css" href="input.css" /> 
+<title>公告页面</title>
+</head>
+
+<body>
+    <div id="main">
+        <%- include("particals/header"); %> 
+    <div id="right" class="box">
+        <h1 style="color: rgb(0, 0, 0);">公告</h1>
+       <button id="btn_1">发布公告</button>
+       <div class="form_1" style="margin:auto;right:450px;position:absolute">
+         <form action="/announce/add" method="GET">
+         <div class="input_1"><div class="login_logo">发布公告</div><div class="close">X</div></div>
+         <hr>
+         <div class="input_1"><input type="text" name="title" placeholder="&nbsp;标题"></div>
+         <div class="input_1"><textarea name="content" rows="10" cols="30" placeholder="&nbsp;内容" autofocus ></textarea></div>
+         <div class="input_1"><input class="submit_1" type="button" style="margin: 100px auto;top:150px;left:80px;position:absolute" onclick="send()" value="提&nbsp;交"></div>
+         </form>
+       </div>
+    </div>
+    <div id="right" class="box">
+        <%announ.forEach(function(value){%>
+      <div id="special" class="note">
+        <p><a href="/announpage?Id=<%=value.Id%>"><%=value.Title%></a></p>
+        <p><a href="/userpage?username=<%=value.Author%>"><%=value.Author%></a></p>
+        <p><%=value.Content%></p>
+        <p>已读：<%=value.Number%></p>
+      </div>
+      <%});%>
+      </div>
+    </div>
+
+    <%- include("particals/footer"); %> 
+</body>
+<script>
+    window.onload=function(){
+        var btn_1=document.getElementById("btn_1");
+        var btn_2=document.getElementById("btn_2");
+        var submit=document.getElementsByClassName("submit_1");
+        var close=document.getElementsByClassName("close");
+        var close_1=document.getElementsByClassName("close_1");
+        var dialog=document.getElementsByClassName("dialog");
+        var form_1=document.getElementsByClassName("form_1");
+        btn_1.addEventListener('click',function(){
+            form_1[0].className="form_1 open";	
+        })
+        close[0].addEventListener('click',function(){
+            form_1[0].className="form_1";
+        })
+        btn_2.addEventListener('click',function(){
+            dialog[0].style.visibility='visible';
+        })
+        close_1[0].addEventListener('click',function(){
+            dialog[0].style.visibility='hidden';
+        })
+        
+    }
+    function send()
+        {
+            var title=document.getElementsByName("title");
+            var content=document.getElementsByName("content");
+            var xmlhttp;
+            if (window.XMLHttpRequest)
+            {
+                    // IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
+                    xmlhttp=new XMLHttpRequest();
+            }
+              else
+            {
+                    // IE6, IE5 浏览器执行代码
+                    xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            xmlhttp.onreadystatechange=function()
+              {
+                   if (xmlhttp.status==200&&xmlhttp.readyState==4)
+                   {
+                      var msg=xmlhttp.responseText;
+                      alert(JSON.parse(msg).message);
+                      location.reload(true);             
+                   }
+              }
+              xmlhttp.open("GET","/announce/add?title="+document.getElementsByName("title")[0].value+"&content="+document.getElementsByName("content")[0].value,true);
+              xmlhttp.send();
+            }
+
+</script>
+</html>

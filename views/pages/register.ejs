@@ -1,0 +1,63 @@
+<%-include("particals/head");%>
+<link rel="stylesheet" type="text/css" href="input.css"/>
+<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <title>注册页面</title>
+<script>
+    function Register()
+    {
+        $.ajax({  
+            type: "GET",  
+            dataType:"json",
+            url:"/register/register_check",  
+            data:$('#register').serialize(),  
+            async: false,  
+            error: function(request) {  
+                alert(request.responseText);  
+            },  
+            success: function(data) {  
+                //接收后台返回的结果 
+                alert(JSON.parse(JSON.stringify(data)).message);
+                window.location="/";
+            }  
+          });
+    }
+</script>
+</head>
+<body>         
+    <div id="main">
+        <%-include("particals/header");%>
+        <div id="right" style="height: 620px;">
+        <div style="margin:0 auto;">
+
+        <form id="register" METHOD="GET" style="margin:0 auto;">
+
+        <div class="input_1"><div class="login_logo">用户注册</div></div>
+        <hr>
+        <div class="input_1" >用户名:<input type='text' name='username' placeholder="&nbsp;用户名"></div>
+
+        <div>性别:男<input type="radio" name="sex" value="男">女<input type="radio" name="sex" value="女"></div>
+
+        <div class="input_1" >专业:<input type='text' name='major' placeholder="&nbsp;专业"></div>
+
+        <div class="input_1" >手机号:<input type='text' name='phonenumber' placeholder="&nbsp;手机号"></div>
+
+        <div class="input_1" >邮箱:<input type='text' name='address' placeholder="&nbsp;邮箱"></div>
+
+        <div class="input_1" >密码:<input type='password' name='pwd' placeholder="&nbsp;密码"></div>
+
+        <div class="input_1" >简历:<br>
+        <div id="special">
+        <textarea name="desc" rows="10" cols="30" placeholder="在此输入简历"></textarea>
+        </div>
+        
+        <a href="/login">登录</a>
+
+        <input type="button" class="submit_1" onclick="Register()" value="注册">
+        </div>
+    </form>
+        </div> 
+    </div>
+</div>
+<%- include("particals/footer");%>
+</body>
+</html>

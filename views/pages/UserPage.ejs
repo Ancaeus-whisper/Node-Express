@@ -1,0 +1,25 @@
+<%-include("particals/head");%>
+<title>用户界面-<%=user.Name%></title>
+</head>
+
+<body>
+   <div id="main">
+       <%-include("particals/header");%>
+       <div id="right" style="height:620px;">
+           <h1 style="color: black;" style="padding-bottom: 100px;">用户信息</h1>
+           <hr>
+           <p>用户名：<%=user.Name%></p>
+           <p>性别：<%=user.Sex%></p>
+           <p>专业：<%=user.Major%></p>
+           <p>邮箱：<%=user.Email%></p>
+           <%if(user.Group==null){%>
+            <p>所属社团：暂无</p>
+            <%}else{%>
+            <p>所属社团：<a href="/group/grouppage?name=<%=user.Group%>"><%=user.Group%></a>
+            <%}%>
+            <p>简介：<%=user.description%></p>
+       </div>
+   </div>
+   <%-include("particals/footer");%>
+</body>
+</html>

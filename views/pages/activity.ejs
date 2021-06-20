@@ -1,0 +1,113 @@
+<%- include("particals/head.ejs"); %>
+<title>活动申请</title>
+<link rel="stylesheet" type="text/css" href="/CSS/input.css"/>
+<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script>
+    function apply()
+    {$.ajax({  
+        type: "GET",  
+        dataType:"json",
+        url:"/activity/apply",  
+        data:$('#app_list').serialize(),  
+        async: false,  
+        error: function(request) {  
+            alert(request.responseText);  
+        },  
+        success: function(data) {  
+            //接收后台返回的结果 
+            alert(JSON.parse(JSON.stringify(data)).message);
+            window.location="/";
+        }  
+      });
+    }
+      function search()
+      {
+        $.ajax({  
+            type: "GET",  
+            dataType:"json",
+            url:"/activity",  
+            data:$('#search_list').serialize(),  
+            async: false,  
+            error: function(request) {  
+                alert(request.responseText);  
+            },  
+            success: function(data) {
+                //接收后台返回的结果 
+                alert(JSON.parse(JSON.stringify(data)));
+            }  
+      });
+    }
+
+    window.onload=function(){
+        var btn_1=document.getElementById("btn_1");
+        var btn_2=document.getElementById("btn_2");
+        var submit=document.getElementsByClassName("submit_1");
+        var close=document.getElementsByClassName("close");
+        var close_1=document.getElementsByClassName("close_1");
+        var dialog=document.getElementsByClassName("dialog");
+        var form_1=document.getElementsByClassName("form_1");
+        btn_1.addEventListener('click',function(){
+            form_1[0].className="form_1 open";
+            document.getElementsByName('address')[0].value=$("#special #address").value;	
+        })
+        close[0].addEventListener('click',function(){
+            form_1[0].className="form_1";
+        })
+        btn_2.addEventListener('click',function(){
+            dialog[0].style.visibility='visible';
+        })
+        close_1[0].addEventListener('click',function(){
+            dialog[0].style.visibility='hidden';
+        })
+        
+    }
+
+</script>
+</header>
+
+<body>
+    <div id="main">
+        <%-include("particals/header.ejs"); %>
+        <div id="right" class="box" style="margin:0 auto;">
+            <div id="special" class="box">  
+                <form id="search_list" action="activity">
+                      时间：<input type="date" name="time"/>
+                      地点：<input type="text" name="name">
+                    <button>查询</button>
+                </form>
+            </div>
+            <div class="form_1" style="margin:auto;right:150px;position:absolute">
+                <form id="app_list">
+                    <div class="input_1"><div class="login_logo">申请活动</div><div class="close">X</div></div>
+                    <hr>
+                    <div class="input_1">活动名<input type="text" name="name" placeholder="&nbsp;活动名"></div>
+                    <div class="input_1">地点  <input type="text" name="address" placeholder="&nbsp;地点"></div>
+                    <div class="input_1">开始时间<input type="date" name="start" placeholder="&nbsp;开始时间"></div>
+                    <div class="input_1">结束时间<input type="date" name="end" placeholder="&nbsp;结束时间"></div>
+                    <div class="input_1">描述<textarea name="description" rows="10" cols="30" placeholder="&nbsp;描述"></textarea></div>
+                    <div class="input_1"><input class="submit_1" type="button" style="margin: 100px auto;" onclick="apply()" value="提&nbsp;交"></div>
+                </form>
+            </div>
+            <div id="search-result">
+                <%if(venue[0]==null){%>
+                    <div id="special" class="box">
+                        <p>暂无结果</p>
+                    </div>            
+                <%}else{venue.forEach(function(value){%>
+                <div id="special" class="box">
+                    <p id="name">名称：<%=value.Name%></p>
+                    <p id="address">地址：<%=value.Address%></p>
+                    <p id="group">申请社团：<%=value.Number%></p>
+                    <p id="max">最大容纳社团：<%=value.Max%></p>
+                    <p id="status">状态：<%=value.Status%></p>
+                    <button id="btn_1">申请</button>
+                </div>
+            <%});}%>
+
+            </div>
+        </div>
+    </div>
+    <%- include("particals/footer.ejs"); %> 
+</body>
+
+</html>

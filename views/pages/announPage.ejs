@@ -1,0 +1,25 @@
+<%-include("particals/head");%>
+<title>公告界面-<%=announ.Name%></title>
+</head>
+
+<body>
+   <div id="main">
+       <%-include("particals/header");%>
+       <div id="right" style="height:620px;">
+           <h1 style="color: black;" style="padding-bottom: 100px;">用户信息</h1>
+           <hr>
+           <div id="special">
+               <p style="font-size: large;">标题：<%=announ.Title%></p>
+           </div>
+           <div id="special">
+            <p>作者：<a href="/userpage?username=<%=announ.Author%>"><%=announ.Author%></a></p>
+            <p>已读：<%=announ.Number%></p>
+            </div>
+           <div class="box">
+           <p>内容：<%=announ.Content%></p>
+           </div>
+       </div>
+   </div>
+   <%-include("particals/footer");%>
+</body>
+</html>

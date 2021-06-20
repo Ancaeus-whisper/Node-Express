@@ -1,0 +1,19 @@
+<div style="float:right;">
+    <% if(isLogin==false){%>
+    <a href="/login">登录</a>  <a href="/register">注册</a>
+    <%}else{%>
+        <p>欢迎回来，<a href="/userpage?username=<%=username%>"><%=username%></a>  <a href="/cancel">注销</a></p>
+    <%}%>
+</div>
+
+<div id="logo">
+    <h1>大学生社团活动 <span class="blue"><a href="/" style="text-decoration: none;">管理平台</a></span></h1>
+</div>
+
+<ul id="menu">
+    <li><a style="text-decoration: none;" href="/" accesskey="h">首页 </a></li>
+    <li><a style="text-decoration: none;" href="/group" accesskey="f">社团页面 </a></li>
+    <li><a style="text-decoration: none;" href="/announce" accesskey="r">公告 </a></li>
+    <li><a style="text-decoration: none;" href="/activity?time=&name=" accesskey="p">活动申请 </a></li>
+    <li><a style="text-decoration: none;" href="/support" accesskey="o">加入我们 </a></li>
+</ul>

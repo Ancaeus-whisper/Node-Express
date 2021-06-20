@@ -1,0 +1,77 @@
+    <%- include("particals/head");%>
+    <link rel="stylesheet" type="text/css" href="input.css"/>
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <title>登录测试</title>
+    </head>
+    <body>
+        <div id="main">
+        <%- include("particals/header");%>
+        <div id="right" style="height: 560px;">
+          <div style="right:700px;position:absolute">
+            <form  action="/login/login_confirm" METHOD="GET" id="login_list">
+            <div class="input_1"><div class="login_logo">用户登录</div></div>
+            <hr>
+            <div id="login">用户名:<input type='text' name='username' placeholder="&nbsp;用户名" id="un"></div>
+
+             <div id="login" class="input_1"> 密码: <input type='password' name='pwd' placeholder="&nbsp;密码" id="pw"></div>
+
+             <div id="login" class="input_1">下次自动登录：<input type="checkbox" name="hasCookie" id="clickuser"></div>
+ 
+             <div id="login" class="input_1"><input class="submit_1" type="button" onclick="Login()" value="登&nbsp;录" id="sub"></div>
+             
+             <div style="padding-top: 20px;"><a href="/register" style="margin: auto;">注册</a>   <a href="/pwdmodify" style="margin: auto;">忘记密码？</a></div>
+            
+            </form>
+ 
+          </div> 
+          
+         </div>
+         
+        </div>
+        <%- include("particals/footer");%>
+    </body>
+    <script>
+
+$(document).ready(function () {
+            $("#right #login #un").val($.cookie("username"));
+            $("#right #login #pw").val($.cookie("password"));
+        });
+        $("#login #sub").click(function(){
+            Save();
+        });
+
+        function Save() {
+            if ($("#login #clickuser").attr("checked")) {
+              var name = $("#login #un").val();
+              var pwd = $("#login #pw").val();
+              $.cookie("clickuser", "true", { expires: 7 }); //存储一个带7天期限的cookie
+              $.cookie("username", name, { expires: 7 });
+              $.cookie("password", pwd, { expires: 7 });
+            }
+            else {
+              $.cookie("clickuser", "false", { expire: -1 });//过期
+              $.cookie("username", "", { expires: -1 });
+              $.cookie("password", "", { expires: -1 });
+            }
+          };
+          function Login()
+          {
+              $.ajax({  
+                  type: "GET",  
+                  dataType:"json",
+                  url:"/login/login_confirm",  
+                  data:$('#login_list').serialize(),  
+                  async: false,  
+                  error: function(request) {  
+                      alert(request.responseText);  
+                  },  
+                  success: function(data) {  
+                      //接收后台返回的结果 
+                      alert(JSON.parse(JSON.stringify(data)).message);
+                      window.location="/";
+                  }  
+                });
+          }
+    </script>
+</html>
+
