@@ -46,13 +46,16 @@
 			</div>
         <div id="left">
 			<div class="box">
-				<h2>将会进行的活动</h2>
+				<h2>将会进行的活动 <a href="/activity?time=&name=">查看更多</a> </h2>
 				<%if(activity==null){%>
 					<p>暂无</p>
 				<%}else{%>
-                <%activity.forEach(function(value){%>
-					<p><b><%=value.Start.substring(0,10);%>--<%=value.End.substring(0,10);%><br><a href="/actpage?name=<%=value.Name%>"> &middot;<%=value.Name%></a></b><li>主办方：<a href="/group/grouppage?name=<%=value.Group%>"><%=value.Group%></a></li><li>举办地点：<%=value.Place%></li><li>描述：<%=value.Description.substring(0,50);%></li></p>
-				<%});}%>
+					<%var count=0;%>
+			    <%for(var i= Object.keys(activity).length-1;i>=0;i--){%>
+					<%if(count==4) break;%>
+					<p><b><%=activity[i].Start.substring(0,10);%>--<%=activity[i].End.substring(0,10);%><br><a href="/actpage?name=<%=activity[i].Name%>"> &middot;<%=activity[i].Name%></a></b><li>主办方：<a href="/group/grouppage?name=<%=activity[i].Group%>"><%=activity[i].Group%></a></li><li>举办地点：<%=activity[i].Place%></li><li>描述：<%=activity[i].Description.substring(0,50);%></li></p>
+					<%count++;%>
+				<%}}%>    
 			</div>
 			<% if(isLogin==false){%>
 			<div class="note">		
