@@ -65,7 +65,8 @@ router.get('/grouppage',function(req,res)
     {
      db.Search("group","Name",req.query.name,function(err,data)
      {
-         cb(err,data);
+       if(data[0]!=null)  cb(err,data);
+       else res.send(400,{err:"社团不存在！"});
      });  
     },
     function(group,cb)

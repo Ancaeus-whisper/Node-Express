@@ -32,8 +32,8 @@
         <div id="right" class="box">
           <%announ.forEach(function(value){%>
         <div id="special" class="note">
-          <p><%=value.Title%></p>
-          <p><a href="/userpage?username="+<%=value.Author%>><%=value.Author%></a></p>
+          <p><a href="announpage?Id=<%=value.Id%>"><%=value.Title%></a></p>
+          <p><a href="/userpage?username=<%=value.Author%>"><%=value.Author%></a></p>
           <p><%=value.Content%></p>
           <p>已读：<%=value.Number%></p>
         </div>
