@@ -1,0 +1,138 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+        <SchemaVersion>2.0</SchemaVersion>
+        <ProjectGuid>{4a364f31-d762-4175-a710-41366a38730a}</ProjectGuid>
+        <ProjectHome>.</ProjectHome>
+        <ProjectView>ShowAllFiles</ProjectView>
+        <StartupFile>server.js</StartupFile>
+        <WorkingDirectory>.</WorkingDirectory>
+        <OutputPath>.</OutputPath>
+        <ProjectTypeGuids>{3AF33F2E-1136-4D97-BBB7-1795711AC8B8};{349c5851-65df-11da-9384-00065b846f21};{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}</ProjectTypeGuids>
+        <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">16.0</VisualStudioVersion>
+        <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
+    <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
+    <ItemGroup>
+        <Content Include="package-lock.json" />
+        <Content Include="package.json" />
+        <Content Include="server.js" />
+        <Content Include="Resource\���,�c.txt" />
+        <Content Include="Resource\DU})$]S4P7]PU4{3HW0C2G7.png" />
+        <Content Include="Resource\}62B8Q7_3641GC%F$$3YD5B.png" />
+        <Content Include="routes\activity.js" />
+        <Content Include="routes\ActivityPage.js" />
+        <Content Include="routes\admin.js" />
+        <Content Include="routes\announ.js" />
+        <Content Include="routes\AnnounPage.js" />
+        <Content Include="routes\dataBase.js" />
+        <Content Include="routes\group.js" />
+        <Content Include="routes\home.js" />
+        <Content Include="routes\login.js" />
+        <Content Include="routes\modifyPassword.js" />
+        <Content Include="routes\register.js" />
+        <Content Include="routes\userpage.js" />
+        <Content Include="public\CSS\component.css" />
+        <Content Include="public\CSS\demo.css" />
+        <Content Include="public\CSS\font-awesome.min.css" />
+        <Content Include="public\CSS\input.css" />
+        <Content Include="public\CSS\normalize.css" />
+        <Content Include="public\CSS\style.css" />
+        <Content Include="public\CSS\table_style.css" />
+        <Content Include="public\data\UserMan.json" />
+        <Content Include="public\fonts\fontawesome-webfont.svg" />
+        <Content Include="public\images\intro.jpg" />
+        <Content Include="public\images\arrow.gif" />
+        <Content Include="public\images\bar.gif" />
+        <Content Include="public\images\baractive.gif" />
+        <Content Include="public\images\barul.gif" />
+        <Content Include="public\images\bg.gif" />
+        <Content Include="public\images\h3bg.gif" />
+        <Content Include="public\images\image.gif" />
+        <Content Include="public\images\leftintrobg.gif" />
+        <Content Include="public\images\package.gif" />
+        <Content Include="public\JS\classie.js" />
+        <Content Include="public\JS\jquery-3.6.0.min.js" />
+        <Content Include="public\JS\login_register.js" />
+        <Content Include="public\JS\modify.js" />
+        <Content Include="public\JS\pitch.js" />
+        <Content Include="views\pages\404NotFound.ejs" />
+        <Content Include="views\pages\505err.ejs" />
+        <Content Include="views\pages\AccessDenied.ejs" />
+        <Content Include="views\pages\activity.ejs" />
+        <Content Include="views\pages\ActivityPage.ejs" />
+        <Content Include="views\pages\Admin.ejs" />
+        <Content Include="views\pages\announce.ejs" />
+        <Content Include="views\pages\announPage.ejs" />
+        <Content Include="views\pages\buzy.ejs" />
+        <Content Include="views\pages\group.ejs" />
+        <Content Include="views\pages\grouptem.ejs" />
+        <Content Include="views\pages\index.ejs" />
+        <Content Include="views\pages\logintest.ejs" />
+        <Content Include="views\pages\pwd_modify.ejs" />
+        <Content Include="views\pages\register.ejs" />
+        <Content Include="views\pages\support.ejs" />
+        <Content Include="views\pages\test.ejs" />
+        <Content Include="views\pages\UserPage.ejs" />
+        <Content Include="views\pages\particals\footer.ejs" />
+        <Content Include="views\pages\particals\head.ejs" />
+        <Content Include="views\pages\particals\header.ejs" />
+    </ItemGroup>
+    <ItemGroup>
+        <Folder Include="bin" />
+        <Folder Include="public" />
+        <Folder Include="public\CSS" />
+        <Folder Include="public\data" />
+        <Folder Include="public\fonts" />
+        <Folder Include="public\images" />
+        <Folder Include="public\JS" />
+        <Folder Include="Resource" />
+        <Folder Include="routes" />
+        <Folder Include="upload_tmp" />
+        <Folder Include="views" />
+        <Folder Include="views\pages" />
+        <Folder Include="views\pages\particals" />
+    </ItemGroup>
+    <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+    <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsToolsV2.targets" />
+    <ProjectExtensions>
+        <VisualStudio>
+          <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+            <WebProjectProperties>
+              <UseIIS>False</UseIIS>
+              <AutoAssignPort>True</AutoAssignPort>
+              <DevelopmentServerPort>0</DevelopmentServerPort>
+              <DevelopmentServerVPath>/</DevelopmentServerVPath>
+              <IISUrl>http://localhost:48022/</IISUrl>
+              <NTLMAuthentication>False</NTLMAuthentication>
+              <UseCustomServer>True</UseCustomServer>
+              <CustomServerUrl>http://localhost:1337</CustomServerUrl>
+              <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+            </WebProjectProperties>
+          </FlavorProperties>
+          <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}" User="">
+            <WebProjectProperties>
+              <StartPageUrl>
+              </StartPageUrl>
+              <StartAction>CurrentPage</StartAction>
+              <AspNetDebugging>True</AspNetDebugging>
+              <SilverlightDebugging>False</SilverlightDebugging>
+              <NativeDebugging>False</NativeDebugging>
+              <SQLDebugging>False</SQLDebugging>
+              <ExternalProgram>
+              </ExternalProgram>
+              <StartExternalURL>
+              </StartExternalURL>
+              <StartCmdLineArguments>
+              </StartCmdLineArguments>
+              <StartWorkingDirectory>
+              </StartWorkingDirectory>
+              <EnableENC>False</EnableENC>
+              <AlwaysStartWebServerOnDebug>False</AlwaysStartWebServerOnDebug>
+            </WebProjectProperties>
+          </FlavorProperties>
+        </VisualStudio>
+    </ProjectExtensions>
+</Project>
